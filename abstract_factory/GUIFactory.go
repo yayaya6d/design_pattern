@@ -17,3 +17,15 @@ type GUIFactory interface {
 	CreateNewButton(string) Button
 	CreateNewCheckBox() CheckBox
 }
+
+func NewGUIFactory(p Platform) GUIFactory {
+	switch p {
+	case Windows:
+		return NewWinGUIFactory()
+	case Mac:
+		return NewMacGUIFactory()
+	}
+
+	println("invalid platform.")
+	return nil
+}
